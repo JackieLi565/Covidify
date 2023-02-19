@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+:root {
+  --darkGreen: #344E41;
+  --lightGreen: #3A5A40;
+  --pale: #DAD7CD;
+  --font: 'Inter', Arial;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.container {
+  display: flex;
+}
+
+.leftSide {
+  background-color: var(--darkGreen);
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 58%;
+  height: 100vh;
+}
+
+.rightSide {
+  background-color: var(--pale);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 42%;
+  height: 100vh;
+  gap: 30px;
+}
+
+.toggleBTN {
+  background-color: var(--lightGreen);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  width: 280px;
+  height: 50px;
+  font-size: 28px;
+  color: var(--pale);
+}
+
+.DMY {
+  border: none;
+  background-color: transparent;
+  width: 30rem;
+  text-align: left;
+  color: var(--pale);
+  font-size: 10rem;
+  font-weight: 500;
+  font-family: var(--font);
+  cursor: pointer;
+}
+
+.line {
+  position: absolute;
+  left: -7rem;
+  top: -4rem;
+}
+
+.DMY_container {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+
+
