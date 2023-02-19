@@ -1,7 +1,6 @@
 import React from 'react';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faInstagram } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  } from '@fortawesome/free-solid-svg-icons'
 const IconBar = () => {
   const containerStyle = {
     display: 'flex',
@@ -26,7 +25,6 @@ const IconBar = () => {
 
   return (
     <div style={containerStyle}>
-      {/* <FontAwesomeIcon icon={faInstagram} /> */}
       <div style={dividerStyle}></div>
       <div style={divStyle}></div>
       <div style={dividerStyle}></div>
