@@ -5,6 +5,7 @@ const HorizontalLine = () => {
     height: '1px',
     width: '450px',
     backgroundColor: 'black',
+    marginBottom: '1.8rem'
   };
 
   return <div style={lineStyle}></div>;

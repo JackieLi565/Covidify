@@ -19,7 +19,7 @@ export default function getListFormat(data) {
             {
                 left: '02',
                 middle: 'Test-Completed',
-                right: 'data.test',
+                right: data.testComplete,
             },
             {
                 left: '03',

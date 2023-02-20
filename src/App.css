@@ -5,6 +5,9 @@
   --lightGreen: #3A5A40;
   --pale: #dad4c1;
   --font: 'Inter', Arial;
+  --lightGreenHover: #335038;
+  --transitionFade: all ease-in-out 0.125s;
+  --transitionButton: all ease-in-out 0.25s;
 }
 
 body {
@@ -48,6 +51,12 @@ body {
   height: 50px;
   font-size: 28px;
   color: var(--pale);
+  transition: var(--transitionFade);
+  margin-bottom: 1.8rem;
+}
+
+.toggleBTN:hover {
+  background-color: var(--lightGreenHover);
 }
 
 .DMY {
@@ -60,6 +69,12 @@ body {
   font-weight: 500;
   font-family: var(--font);
   cursor: pointer;
+  transition: var(--transitionButton);
+}
+
+.DMY:hover {
+  padding-left: 2rem;
+  text-decoration: underline;
 }
 
 .line {

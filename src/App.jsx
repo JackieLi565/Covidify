@@ -3,10 +3,9 @@ import './App.css'
 import axios from "axios";
 import IconBar from './Components/SocialIcons';
 import VerticalLine from './Components/LineDiv';
-import HorizontalLine from './Components/HorizontalDiv';
 import Receipt from './Components/Receipt';
 import Filter from './Components/Filter';
-import calcDMYavg, {getDate} from './utils/sum';
+import calcDMYavg, {getDate, formatCustom} from './utils/calcAverage';
 
 function App() {
   const [pt, setPT] = useState('ON');
@@ -14,7 +13,7 @@ function App() {
   const [after, setAfter] = useState('2023-01-01'); */
   const [date, setDate] = useState('2022-01-01')
   const [submit, setSubmit] = useState(false);
-  const [dataRange, setDataRange] = useState([]);
+  //const [dataRange, setDataRange] = useState([]);
   const [dataDate, setDataDate] = useState({});
   const [totalData, setTotalData] = useState({});
   //const [status, setStatus] = useState(null)
@@ -25,12 +24,16 @@ function App() {
   const array = calcDMYavg(totalData)
 
   function toggle() {
-    setSubmit(prev => {
-      return !prev
-    })
+    setSubmit(false)
   }
 
-  function statusHandle(day, month, year) {
+  function setSpecificDate(pt, date) {
+    setDate(date);
+    setPT(pt);
+    statusHandle(false, false, false, true, false)
+  }
+
+  function statusHandle(day, month, year, specific, range) {
     if(day) {
       setTemp('day')
     }
@@ -40,22 +43,27 @@ function App() {
     if(year) {
       setTemp('year')
     }
+    if(specific) {
+      setTemp('specific')
+    }
     setSubmit(true)
   }
 
   useEffect(() => { 
       //let rangeAPI = `https://api.opencovid.ca/summary?geo=pt&loc=${pt}&after=${after}&before=${before}&fill=true&version=true&pt_names=short&hr_names=hruid&fmt=json`;
       let dateAPI = `https://api.opencovid.ca/summary?geo=pt&loc=${pt}&date=${date}&fill=true&version=true&pt_names=short&hr_names=hruid&fmt=json`;
+      console.log(dateAPI)
       let totalData = `https://api.opencovid.ca/summary?geo=pt&loc=ON&date=2023-02-19&fill=true&version=true&pt_names=short&hr_names=hruid&fmt=json`;
       axios.get(dateAPI) //date`
       .then(object => {
-        setDate(object.data.data[0])
+        console.log(object.data.data[0])
+        setDataDate(object.data.data[0])
       })
       axios.get(totalData) //date`
       .then(object => {
         setTotalData(object.data.data[0])
       })
-  },[])
+  },[date, pt])
 
   useEffect(() => {
     if(temp == 'day') {
@@ -67,6 +75,9 @@ function App() {
     if(temp == 'year') {
       setCurrentReceipt(array[2])
     }
+    if(temp == 'specific') {
+      setCurrentReceipt(formatCustom(dataDate))
+    }
   }, [temp])
 
   //reloads 5 times
@@ -76,18 +87,18 @@ function App() {
         <div className='DMY_container'>
           <button 
             className='DMY' 
-            onClick={() => statusHandle(true, false, false)}
+            onClick={() => statusHandle(true, false, false, false, false)}
             >
               Daily
           </button>
           <button 
             className='DMY' 
-            onClick={() => statusHandle(false, true, false)}>
+            onClick={() => statusHandle(false, true, false, false, false)}>
               Monthly
           </button>
           <button 
             className='DMY' 
-            onClick={() => statusHandle(false, false, true)}>
+            onClick={() => statusHandle(false, false, true, false, false)}>
               Yearly
           </button>
           <div className='line'>
@@ -98,9 +109,7 @@ function App() {
       </div>
 
       <div className='rightSide'>
-        <button className='toggleBTN' onClick={toggle}>{submit ? 'New Receipt' : 'Print Receipt'}</button>
-        <HorizontalLine />
-        {submit ? <Receipt child={currentReceipt}/>: <Filter />}
+        {submit ? <Receipt child={currentReceipt} tog={toggle}/>: <Filter specific={setSpecificDate} tog={statusHandle}/>}
       </div>
     </div>
   )

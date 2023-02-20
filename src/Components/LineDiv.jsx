@@ -1,12 +1,6 @@
 import React from 'react';
-
+import '../styles/lineDiv.css'
 const VerticalLine = () => {
-  const lineStyle = {
-    height: '780px',
-    width: '3px',
-    backgroundColor: '#DAD7CD',
-    position: 'relative',
-  };
 
   const ballStyle = {
     height: '20px',
@@ -18,20 +12,9 @@ const VerticalLine = () => {
     left: '-8px',
   };
 
-  const titleStyle = {
-    fontFamily: 'Arial',
-    color: 'rgba(0, 0, 0, 0.60)',
-    fontSize: '2.7rem',
-    top: '-55px',
-    left: '-30px', 
-    width: '500px',
-    position: 'absolute',
-    cursor: 'pointer',
-  }
-
   return (
-    <div style={lineStyle}>
-        <div style={titleStyle}>Welcome to Covidify</div>
+    <div className='lineStyle'>
+        <div className='titleStyle'>Welcome to Covidify</div>
         <div style={ballStyle}></div>
     </div>
   );
