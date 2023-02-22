@@ -1,8 +1,7 @@
 import React from "react";
 import ReceiptData from "./ReceiptData";
 import HorizontalLine from "./HorizontalDiv";
-const Receipt = (props) => {
-    const {child, tog} = props;
+const Receipt = ({child, tog, date}) => {
     const container = {
         display: 'flex',
         flexDirection: 'column',
@@ -10,9 +9,9 @@ const Receipt = (props) => {
     }
     return(
         <div style={container}>
-            <button className='toggleBTN' onClick={tog}>New Receipt</button>
+            <button className='toggleBTN' onClick={() => tog(false)}>New Receipt</button>
             <HorizontalLine />
-            <ReceiptData data={child}/>
+            <ReceiptData subHead={date} data={child}/>
         </div>
     );
 }

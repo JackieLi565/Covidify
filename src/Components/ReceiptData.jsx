@@ -1,7 +1,6 @@
 import React from "react";
 import getListFormat from "../utils/format";
-const ReceiptData = (props) => {
-    const {data} = props
+const ReceiptData = ({data, subHead}) => {
     const lineStyle = {
         width: '500px',
         height: '1px',
@@ -84,7 +83,7 @@ const ReceiptData = (props) => {
             <div style={{paddingTop: '10px'}}>
                 <div style={title}>
                     <h1 style={{margin: '10px 0px 5px 0px'}}>COVIDIFY</h1>
-                    <p style={{margin: '10px 0px 15px 0px'}}>13 March, 2020</p>
+                    <p style={{margin: '10px 0px 15px 0px'}}>{subHead}</p>
                 </div>
                 {itemList}
             </div> 

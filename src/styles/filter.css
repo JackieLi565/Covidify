@@ -33,6 +33,14 @@
     border: none;
 }
 
+.twoLetter:disabled {
+    background-color: #dad4c1af;
+}
+
+.fourLetter:disabled {
+    background-color: #dad4c1af;
+}
+
 .range-container {
     display: flex;
     align-items: center;

@@ -1,4 +1,4 @@
-export default function calcDMYavg(object) {
+export default function calcDMYavg(object, date) {
   const days = getDateDiff();
   const months = days/30.417;
   const years = days/365;
@@ -21,8 +21,8 @@ export default function calcDMYavg(object) {
   const dataDay = {
       cases: Math.round((cases / days) * 100) / 100,
       deaths: Math.round((deaths / days) * 100) / 100,
-      hosplitalizations: Math.round((hospitalizations/days) * 1) / 100,
-      testComplete: Math.round((tests_completed/days) * 1) / 100, //average
+      hosplitalizations: Math.round((hospitalizations/days) * 100) / 100,
+      testComplete: Math.round((tests_completed/days) * 100) / 100, //average
       icu: Math.round((icu/days) * 100) / 100,
       vc1: Math.round((vaccine_coverage_dose_1/days) * 100) / 100,
       vc2: Math.round((vaccine_coverage_dose_2/days) * 100) / 100,
@@ -37,8 +37,8 @@ export default function calcDMYavg(object) {
   const dataMonth = {
     cases: Math.round((cases / months) * 100) / 100,
     deaths: Math.round((deaths / months) * 100) / 100,
-    hosplitalizations: Math.round((hospitalizations/months) * 1) / 100,
-    testComplete: Math.round((tests_completed/days) * 1) / 100,
+    hosplitalizations: Math.round((hospitalizations/months) * 100) / 100,
+    testComplete: Math.round((tests_completed/months) * 100) / 100,
     icu: Math.round((icu/months) * 100) / 100,
     vc1: Math.round((vaccine_coverage_dose_1/months) * 100) / 100,
     vc2: Math.round((vaccine_coverage_dose_2/months) * 100) / 100,
@@ -53,8 +53,8 @@ export default function calcDMYavg(object) {
   const dataYear = {
     cases: Math.round((cases / years) * 100) / 100,
     deaths: Math.round((deaths / years) * 100) / 100,
-    hosplitalizations: Math.round((hospitalizations/years) * 1) / 100,
-    testComplete: Math.round((tests_completed/days) * 1) / 100,
+    hosplitalizations: Math.round((hospitalizations/years) * 100) / 100,
+    testComplete: Math.round((tests_completed/years) * 100) / 100,
     icu: Math.round((icu/years) * 100) / 100,
     vc1: Math.round((vaccine_coverage_dose_1/years) * 100) / 100,
     vc2: Math.round((vaccine_coverage_dose_2/years) * 100) / 100,
@@ -69,8 +69,12 @@ export default function calcDMYavg(object) {
   return [dataDay, dataMonth, dataYear]
 }
 
+export function formatRange(array) {
+
+
+}
+
 export function formatCustom(object) {
-  console.log(object)
   const {
     cases,
     deaths,
@@ -86,6 +90,7 @@ export function formatCustom(object) {
     vaccine_administration_dose_3,
     vaccine_administration_dose_4
   } = object;
+
   const formatted = {
     cases: cases,
     deaths: deaths,
@@ -104,7 +109,7 @@ export function formatCustom(object) {
   return formatted;
 }
 
-function getDateDiff() {
+ export function getDateDiff() {
   const march132020 = new Date('2020-03-13');
   const today = new Date();
   const oneDay = 1000 * 60 * 60 * 24; // Number of milliseconds in a day
