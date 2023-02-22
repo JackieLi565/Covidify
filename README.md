@@ -27,3 +27,16 @@ Some features Covidify is expected to offer include:
 - [x] Receipt History
 - [ ] PNG receipt download
 - [ ] Introduction Page && Loading animation for data fetching (Covid-19 tips)
+
+## Dependencies
+```
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "antd": "^5.2.2",
+    "axios": "^1.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+```
