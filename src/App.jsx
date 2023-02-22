@@ -5,7 +5,7 @@ import IconBar from './Components/SocialIcons';
 import VerticalLine from './Components/LineDiv';
 import Receipt from './Components/Receipt';
 import Filter from './Components/Filter';
-import calcDMYavg, {getDate, formatCustom, getDateDiff} from './utils/calcAverage';
+import calcDMYavg, {formatRange, formatCustom, getDateDiff} from './utils/calcAverage';
 import ReceiptHistory from './Components/ReceiptHistory';
 
 function App() {
@@ -31,9 +31,8 @@ function App() {
   function setRangeDate(after, before, pt) {
     const rangeAPI = `https://api.opencovid.ca/summary?geo=pt&loc=${pt}&after=${after}&before=${before}&fill=true&version=true&pt_names=short&hr_names=hruid&fmt=json`;
     axios.get(rangeAPI)
-    .then(object => {
-      setCurrentReceipt(formatCustom(object.data.data))    
-      console.log(object)
+    .then(object => { 
+      setCurrentReceipt(formatRange(object.data.data))
       setSubmit(true)
     })
     .catch(error => {
@@ -44,7 +43,13 @@ function App() {
 
   function handleReceiptHistory(object) {
     setReceiptHistory(prev => {
-      return [...prev, object]
+      const current = prev;
+      if(prev.length > 4) {
+        current.pop();
+        return [object, ...current]
+      } else {
+        return [object,...prev]
+      }
     })
   }
 

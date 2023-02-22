@@ -40,6 +40,7 @@ body {
   height: 100vh;
   gap: 30px;
   padding-top: 4.3rem;
+  position: relative;
 }
 
 .toggleBTN {
@@ -88,6 +89,12 @@ body {
   flex-direction: column;
   gap: 10px;
   position: relative;
+}
+
+.history-container {
+  position: absolute;
+  bottom: 9rem;
+  left: 9rem;
 }
 
 

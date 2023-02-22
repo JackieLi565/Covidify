@@ -102,3 +102,21 @@ input {
   .submit:hover {
     background-color: var(--lightGreenHover);
   }
+
+  .receiptHistory {
+    color: var(--darkGreen);
+    font-family: var(--font);
+  }
+
+  .oldReceipt {
+    color: var(--lightGreenHover);
+    cursor: pointer;
+    padding-bottom: 1rem;
+    font-family: var(--font);
+    font-size: 1.1rem;
+    margin-left: 20px;
+  }
+
+  .oldReceipt:hover {
+    text-decoration: underline;
+  }

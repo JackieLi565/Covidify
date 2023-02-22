@@ -1,5 +1,6 @@
 import React from "react";
 import OldReceipts from "./oldReceipt";
+import '../styles/filter.css';
 function ReceiptHistory({receipts, range, specific}) {
     function handleReceiptClick (id, pt, date) {
         const [after, before] = date;
@@ -10,8 +11,8 @@ function ReceiptHistory({receipts, range, specific}) {
         }
     }
     return (  
-        <div>
-            <h1>Receipt History</h1>
+        <div className="history-container">
+            <h1 className="receiptHistory">Previous Receipt</h1>
             {receipts.map((object, index) => {
                 return (
                     <OldReceipts 

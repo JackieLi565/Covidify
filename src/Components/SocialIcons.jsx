@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  } from '@fortawesome/free-solid-svg-icons'
+import {InstagramOutlined, MailOutlined, GithubOutlined, WechatOutlined} from '@ant-design/icons'
 const IconBar = () => {
   const containerStyle = {
     display: 'flex',
@@ -23,14 +22,21 @@ const IconBar = () => {
     margin: '0 20px',
   };
 
+  const iconStyle = {
+    color: 'white',
+    fontSize: '2.3rem',
+    cursor:'pointer'
+  }
+
   return (
     <div style={containerStyle}>
+      <InstagramOutlined style={iconStyle} />
       <div style={dividerStyle}></div>
-      <div style={divStyle}></div>
+      <WechatOutlined  style={iconStyle}/>
       <div style={dividerStyle}></div>
-      <div style={divStyle}></div>
+      <GithubOutlined style={iconStyle} />
       <div style={dividerStyle}></div>
-      <div style={divStyle}></div>
+      <MailOutlined style={iconStyle} />
     </div>
   );
 };

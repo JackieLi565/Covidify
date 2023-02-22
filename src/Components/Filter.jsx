@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HorizontalLine from "./HorizontalDiv";
 import checkValidDate, {checkMatch } from "../utils/checkLogic";
+import { getDate } from "../utils/calcAverage";
 import '../styles/filter.css'
 
 function Filter({ specific, range }) {
@@ -29,6 +30,8 @@ function Filter({ specific, range }) {
       specific(pt, comboSpecific);
     } else if(firstGroupDisabled && checkValidDate(comboRange) && checkValidDate(comboSpecific) && checkMatch(pt.toUpperCase())) {
       range(comboRange, comboSpecific, pt);
+    } else {
+      specific('ON', getDate())
     }
   }
 
@@ -182,7 +185,7 @@ function Filter({ specific, range }) {
             onChange={e => setPT(e.target.value)}
           />  
         </div>
-        <button className="currentDate">Current Date</button>
+        <button className="currentDate" onClick={handleParentInfo}>Current Date</button>
       </div>
     </div>
   );
