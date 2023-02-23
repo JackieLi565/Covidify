@@ -34,7 +34,7 @@ const IconBar = () => {
       <div style={dividerStyle}></div>
       <WechatOutlined  style={iconStyle}/>
       <div style={dividerStyle}></div>
-      <GithubOutlined style={iconStyle} />
+      <a href="https://github.com/JackieLi565/Covidify"><GithubOutlined style={iconStyle} /></a>
       <div style={dividerStyle}></div>
       <MailOutlined style={iconStyle} />
     </div>

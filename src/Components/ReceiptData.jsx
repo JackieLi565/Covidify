@@ -48,6 +48,7 @@ const ReceiptData = ({data, subHead}) => {
 
     const container = {
         position: 'relative',
+        boxShadow: '0 20px 20px rgba(0, 0, 0, 0.5)'
     }
 
     const array = getListFormat(data);
@@ -79,11 +80,11 @@ const ReceiptData = ({data, subHead}) => {
 
     return(
         <div style={container}>
-            <img style={paper} src="../public/assets/Paper.jpg"/>
+            <img style={paper} src="../public/static/images/Paper.jpg"/>
             <div style={{paddingTop: '10px'}}>
                 <div style={title}>
                     <h1 style={{margin: '10px 0px 5px 0px'}}>COVIDIFY</h1>
-                    <p style={{margin: '10px 0px 15px 0px'}}>{subHead}</p>
+                    <p style={{margin: '10px 0px 15px 0px'}}>Please Keep Masks Above The Nose</p>
                 </div>
                 {itemList}
             </div> 

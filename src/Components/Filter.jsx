@@ -31,8 +31,12 @@ function Filter({ specific, range }) {
     } else if(firstGroupDisabled && checkValidDate(comboRange) && checkValidDate(comboSpecific) && checkMatch(pt.toUpperCase())) {
       range(comboRange, comboSpecific, pt);
     } else {
-      specific('ON', getDate())
+      alert('Error: Please provide the correct date in the following format Day : Month : Year with leading zero if needed')
     }
+  }
+
+  function handleSolo() {
+    specific('ON', getDate())
   }
 
   //super jank solution
@@ -185,7 +189,7 @@ function Filter({ specific, range }) {
             onChange={e => setPT(e.target.value)}
           />  
         </div>
-        <button className="currentDate" onClick={handleParentInfo}>Current Date</button>
+        <button className="currentDate" onClick={handleSolo}>Current Date</button>
       </div>
     </div>
   );

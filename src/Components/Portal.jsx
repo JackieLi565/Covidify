@@ -13,7 +13,7 @@ function Portal() {
             <p className='desc'>
                 Covidify is a web-based application which prints the receipt on reported Covid-19 related information. 
                 Users can choose specific dates or print out the average daily, month, or yearly data.
-                If you would like to learn more about the data Covidify uses click <a className='link' href="https://github.com/ccodwg/CovidTimelineCanada">HERE.</a>
+                If you would like to learn more about the data Covidify uses click <a target={'_blank'} className='link' href="https://github.com/ccodwg/CovidTimelineCanada">HERE.</a>
             </p>
             <button className='trynow' onClick={(() => naviagte('/Receipt'))}>
                 Try Covidify
