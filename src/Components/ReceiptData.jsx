@@ -1,5 +1,6 @@
 import React from "react";
 import getListFormat from "../utils/format";
+import '../styles/App.css'
 const ReceiptData = ({data, subHead}) => {
     const lineStyle = {
         width: '500px',
@@ -38,19 +39,6 @@ const ReceiptData = ({data, subHead}) => {
         textAlign: 'right'
     };
 
-    const paper = {
-        position: 'absolute',
-        width: '550px',
-        height: '700px',
-        left: '-24px',
-        borderRadius: '10px'
-    }
-
-    const container = {
-        position: 'relative',
-        boxShadow: '0 20px 20px rgba(0, 0, 0, 0.5)'
-    }
-
     const array = getListFormat(data);
     const itemList = array.map((object, index) => {
         let section;
@@ -79,9 +67,8 @@ const ReceiptData = ({data, subHead}) => {
     })
 
     return(
-        <div style={container}>
-            <img style={paper} src="../public/static/images/Paper.jpg"/>
-            <div style={{paddingTop: '10px'}}>
+        <div className="paperItself" >
+            <div className="receiptPaper">
                 <div style={title}>
                     <h1 style={{margin: '10px 0px 5px 0px'}}>COVIDIFY</h1>
                     <p style={{margin: '10px 0px 15px 0px'}}>Please Keep Masks Above The Nose</p>
