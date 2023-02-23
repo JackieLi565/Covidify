@@ -93,9 +93,70 @@ body {
 
 .history-container {
   position: absolute;
-  bottom: 9rem;
+  top: 36rem;
   left: 9rem;
 }
 
+.portal {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--darkGreen);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Covidify {
+  font-family: var(--font);
+  color: var(--pale);
+  font-size: 7rem;
+  font-weight: 500;
+  margin: 0px;
+}
+
+.slogan {
+  margin: 0.5em 0px 0px 0px;
+  font-family: var(--font);
+  color: #dad4c1c4;
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.link {
+  text-decoration: underline;
+  color: var(--pale);
+  transition: var(--transitionButton);
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.desc {
+  font-family: var(--font);
+  width: 55rem;
+  text-align: center;
+  font-size: 20px;
+  color: var(--pale);
+}
+
+.trynow {
+  background-color: var(--pale);
+  color: var(--darkGreen);
+  font-size: 1.3rem;
+  font-family: var(--font);
+  width: 10rem;
+  font-weight: 500;
+  height: 3rem;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all ease-in-out 0.15s;
+}
+
+.trynow:hover {
+  padding-bottom: 3px;
+}
 
 

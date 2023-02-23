@@ -1,7 +1,8 @@
 import React from 'react';
 import '../styles/lineDiv.css'
+import { useNavigate } from 'react-router-dom';
 const VerticalLine = () => {
-
+  const navigate = useNavigate();
   const ballStyle = {
     height: '20px',
     width: '20px',
@@ -14,7 +15,10 @@ const VerticalLine = () => {
 
   return (
     <div className='lineStyle'>
-        <div className='titleStyle'>Welcome to Covidify</div>
+        <button 
+          className='titleStyle'
+          onClick={() => navigate('/')}
+        >Welcome to Covidify</button>
         <div style={ballStyle}></div>
     </div>
   );
