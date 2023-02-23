@@ -11,11 +11,11 @@ Some features Covidify is expected to offer include:
 - Downloading Receipts
 - Receipt history
 
+## Welcome page
+![WElcomne](https://user-images.githubusercontent.com/102015496/220824985-f81533f9-3774-45d3-b4be-0a483512fa90.jpg)
+
 ## Main page
 ![Main](https://user-images.githubusercontent.com/102015496/220528917-45595104-b070-4b62-8d2a-6e87bd21c751.jpg)
-
-## Custom Receipt
-![Receipt1](https://user-images.githubusercontent.com/102015496/220528990-d3db529e-d83d-4922-99dc-52937d7b856d.jpg)
 
 ## Monthly Receipt
 ![Receipt2](https://user-images.githubusercontent.com/102015496/220529034-5359a51a-9cca-43a4-b519-2f3e2f15c0dd.jpg)
@@ -30,13 +30,14 @@ Some features Covidify is expected to offer include:
 
 ## Dependencies
 ```
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.3.0",
-    "@fortawesome/free-solid-svg-icons": "^6.3.0",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "antd": "^5.2.2",
-    "axios": "^1.3.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+"dependencies": {
+  "@fortawesome/fontawesome-svg-core": "^6.3.0",
+  "@fortawesome/free-solid-svg-icons": "^6.3.0",
+  "@fortawesome/react-fontawesome": "^0.2.0",
+  "antd": "^5.2.2",
+  "axios": "^1.3.3",
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-router-dom": "^6.8.1"
+}
 ```
