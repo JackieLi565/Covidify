@@ -168,10 +168,11 @@ body {
 .paperItself {
   display: flex;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.788);
   width: 550px;
   height: 700px;
   border-radius: 10px;
-  background-image: url(../public/static/images/Paper.jpg);
+  background-image: url(../static/images/Paper.jpg);
   background-size: 100% 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
