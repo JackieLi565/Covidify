@@ -2,3 +2,5 @@
 Covidify is a web-based application which prints the receipt on reported Covid-19 related information. 
 Users can choose specific dates or print out the average daily, month, or yearly data.
 Covidify uses the OpenCovid.ca API for Covid-19 statistics, to learn more about the API visit (https://opencovid.ca/api/)
+
+Please note the data is subject to modifactions, thus data may not be accurate. Take it with a grain of salt.
