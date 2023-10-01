@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 :root {
-  --darkGreen: #344E41;
-  --lightGreen: #3A5A40;
+  --darkGreen: #344e41;
+  --lightGreen: #3a5a40;
   --pale: #dad4c1;
-  --font: 'Inter', Arial;
+  --font: "Inter", Arial;
   --lightGreenHover: #335038;
   --transitionFade: all ease-in-out 0.125s;
   --transitionButton: all ease-in-out 0.25s;
@@ -18,29 +18,15 @@ body {
 
 .container {
   display: flex;
-}
-
-.leftSide {
-  background-color: var(--darkGreen);
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 58%;
   height: 100vh;
 }
 
 .rightSide {
   background-color: var(--pale);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+
   width: 42%;
-  height: 100vh;
   gap: 30px;
   padding-top: 4.3rem;
-  position: relative;
 }
 
 .toggleBTN {
@@ -60,41 +46,12 @@ body {
   background-color: var(--lightGreenHover);
 }
 
-.DMY {
-  border: none;
-  background-color: transparent;
-  width: 30rem;
-  text-align: left;
-  color: var(--pale);
-  font-size: 10rem;
-  font-weight: 500;
-  font-family: var(--font);
-  cursor: pointer;
-  transition: var(--transitionButton);
-}
-
-.DMY:hover {
-  padding-left: 2rem;
-}
-
-.line {
-  position: absolute;
-  left: -7rem;
-  top: -4rem;
-}
-
 .DMY_container {
   margin-top: 8rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
-}
-
-.history-container {
-  position: absolute;
-  top: 36rem;
-  left: 9rem;
 }
 
 .portal {
@@ -160,15 +117,10 @@ body {
 }
 
 .receiptPaper {
-
   padding-top: 10px;
-
 }
 
 .paperItself {
-  display: flex;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.788);
   width: 550px;
   height: 700px;
   border-radius: 10px;
@@ -176,5 +128,3 @@ body {
   background-size: 100% 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-
-

@@ -1,19 +1,17 @@
 import React from "react";
 import ReceiptData from "./ReceiptData";
-import HorizontalLine from "./HorizontalDiv";
-const Receipt = ({child, tog, date}) => {
-    const container = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-    }
-    return(
-        <div style={container}>
-            <button className='toggleBTN' onClick={() => tog(false)}>New Receipt</button>
-            <HorizontalLine />
-            <ReceiptData subHead={date} data={child}/>
-        </div>
-    );
-}
+const Receipt = ({ child, tog, date }) => {
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <button
+        className="bg-lightGreen text-pale text-3xl max-w-sm rounded px-20 py-3"
+        onClick={() => tog(false)}
+      >
+        New Receipt
+      </button>
+      <ReceiptData subHead={date} data={child} />
+    </div>
+  );
+};
 
 export default Receipt;
