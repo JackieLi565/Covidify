@@ -84,7 +84,7 @@ function Home() {
       });
   }, []);
   return (
-    <div className="flex flex-col lg:flex-row h-screen overflow-y-auto overflow-x-hidden">
+    <div className="flex flex-col lg:flex-row h-full overflow-x-hidden">
       <div className="flex justify-center items-center w-full lg:w-[58%] bg-darkGreen py-10">
         <div className="flex flex-col gap-10">
           <button
@@ -107,7 +107,8 @@ function Home() {
           </button>
         </div>
       </div>
-      <div className="py-16 space-y-5 bg-pale w-full lg:w-[42%]">
+
+      <div className="py-8 px-2 space-y-5 bg-pale w-full lg:w-[42%] overflow-y-auto">
         {submit ? (
           <Receipt child={currentReceipt} tog={setSubmit} />
         ) : (

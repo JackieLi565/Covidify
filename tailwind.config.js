@@ -10,6 +10,7 @@ export default {
     },
     backgroundImage: {
       paper: "url(../static/images/Paper.jpg);",
+      cover: "url(../static/images/cover.svg)"
     },
   },
   plugins: [],

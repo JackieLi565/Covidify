@@ -1,76 +1,80 @@
 import React from "react";
-import getListFormat from "../utils/format";
 import "../styles/App.css";
-const ReceiptData = ({ data, subHead }) => {
-  const lineStyle = {
-    width: "500px",
-    height: "1px",
-    borderBottom: "1px dashed black",
-    marginTop: "5px",
-    marginBottom: "5px",
-    position: "relative",
-  };
-
-  const header = {
-    marginTop: "8px",
-    marginBottom: "7px",
-    width: "500px",
-    height: "auto",
-    display: "grid",
-    gridTemplateColumns: "1fr 2fr 2fr",
-    gridGap: "10px",
-    position: "relative",
-  };
-
-  const title = {
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    flexDirection: "column",
-  };
-
-  const leftAlignStyle = {
-    margin: "0px",
-    textAlign: "left",
-  };
-
-  const rightAlignStyle = {
-    margin: "0px",
-    textAlign: "right",
-  };
-
-  const array = getListFormat(data);
-  const itemList = array.map((object, index) => {
-    let section;
-    if (object.left == "ITEM #" || object.left == "Summary") {
-      section = (
-        <div key={index}>
-          <div style={lineStyle}></div>
-          <div style={header}>
-            <p style={leftAlignStyle}>{object.left}</p>
-            <p style={leftAlignStyle}>{object.middle}</p>
-            <p style={rightAlignStyle}>{object.right}</p>
-          </div>
-          <div style={lineStyle}></div>
-        </div>
-      );
-    } else {
-      section = (
-        <div key={index} style={header}>
-          <p style={leftAlignStyle}>{object.left}</p>
-          <p style={leftAlignStyle}>{object.middle}</p>
-          <p style={rightAlignStyle}>{object.right}</p>
-        </div>
-      );
-    }
-    return section;
-  });
-
+import { forwardRef } from "react";
+const ReceiptData = forwardRef(({ data }, ref) => {
   return (
-    <div className="bg-paper bg-cover rounded-xl shadow-lg p-6 scale-[0.7] md:scale-100">
-      {itemList}
+    <div
+      ref={ref}
+      className="bg-paper space-y-3 bg-cover rounded-xl shadow-lg px-12 py-6 w-11/12"
+    >
+      <Header />
+      <div className="space-y-1">
+        <Body left="01" middle="Cases" right={data.cases} />
+        <Body left="02" middle="Test-Completed" right={data.testComplete} />
+        <Body left="03" middle="Deaths" right={data.deaths} />
+        <Body
+          left="04"
+          middle="Hosplitalizations"
+          right={data.hosplitalizations}
+        />
+        <Body left="05" middle="ICU" right={data.icu} />
+      </div>
+      <Divider left="ITEM #" title="Vaccine Coverage" amount="%" />
+      <div className="space-y-1">
+        <Body left="SC" middle="Vaccine Dose 1" right={data.vc1} />
+        <Body left="BT" middle="Vaccine Dose 2" right={data.vc2} />
+        <Body left="C2" middle="Vaccine Dose 3" right={data.vc3} />
+        <Body left="MR" middle="Vaccine Dose 4" right={data.vc4} />
+      </div>
+      <Divider left="ITEM #" title="Vaccine Administration" amount="Amount" />
+
+      <div className="space-y-1">
+        <Body left="SC.1" middle="Dose 1" right={data.va1} />
+        <Body left="BT.3" middle="Dose 2" right={data.va2} />
+        <Body left="C2.B" middle="Dose 3" right={data.va3} />
+        <Body left="MR.A" middle="Dose 4" right={data.va4} />
+      </div>
+    </div>
+  );
+});
+
+export default ReceiptData;
+
+const Divider = ({ left, title, amount }) => {
+  return (
+    <div className="border-dashed flex items-center border-y w-full">
+      <p className="text-left flex-1">{left}</p>
+      <p className="text-center flex-1">{title}</p>
+      <p className="text-right flex-1">{amount}</p>
     </div>
   );
 };
 
-export default ReceiptData;
+const Body = ({ left, middle, right }) => {
+  return (
+    <li className="flex">
+      <p className="flex-1 text-left">{left}</p>
+      <p className="flex-1 text-center">{middle}</p>
+      <p className="flex-1 text-right">{right}</p>
+    </li>
+  );
+};
+
+const Header = ({}) => {
+  function showPosition(position) {
+    console.log(position);
+  }
+  return (
+    <>
+      <header className="flex flex-col items-center text-base">
+        <h1 className="text-xl">Covidify</h1>
+        <p>Address: 170 Elizabeth St</p>
+        <p>Telephone: 416 123-1234</p>
+      </header>
+    </>
+  );
+};
+
+const Footer = () => {
+  return <footer>Test</footer>;
+};

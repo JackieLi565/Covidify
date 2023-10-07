@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import checkValidDate, { checkMatch } from "../utils/checkLogic";
 import { getDate } from "../utils/calcAverage";
 import "../styles/filter.css";
+import { Button } from "./Button";
 
 function Filter({ specific, range }) {
   //first group && after
@@ -101,13 +102,8 @@ function Filter({ specific, range }) {
   }
 
   return (
-    <>
-      <button
-        className="bg-lightGreen max-w-sm m-auto block px-20 py-2 rounded text-pale text-2xl"
-        onClick={handleParentInfo}
-      >
-        Print Receipt
-      </button>
+    <form className="flex flex-col gap-2 items-center">
+      <Button onClick={handleParentInfo}>Print Receipt</Button>
       <div className="border-b border-darkGreen max-w-md m-auto"></div>
       <div className="bg-lightGreen rounded max-w-lg m-auto px-10 py-4">
         <p className="filter-subtitle">Specific Date:</p>
@@ -205,11 +201,11 @@ function Filter({ specific, range }) {
             onChange={(e) => setPT(e.target.value)}
           />
         </div>
-        <button className="currentDate" onClick={handleSolo}>
+        <button type="button" className="currentDate" onClick={handleSolo}>
           Current Date
         </button>
       </div>
-    </>
+    </form>
   );
 }
 
