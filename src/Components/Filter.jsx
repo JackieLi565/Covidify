@@ -1,207 +1,147 @@
 import React, { useState } from "react";
-import checkValidDate, { checkMatch } from "../utils/checkLogic";
+import { useSearchParams } from "react-router-dom";
 import { getDate } from "../utils/calcAverage";
 import "../styles/filter.css";
 import { Button } from "./Button";
 
-function Filter({ specific, range }) {
-  //first group && after
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+const formatDate = (day, month, year) => {
+  return `${year}-${month}-${day}`;
+};
 
-  //second group && before
-  const [eDay, setEDay] = useState("");
-  const [eMonth, setEMonth] = useState("");
-  const [eYear, setEYear] = useState("");
+function Filter() {
+  const [__, setSearchParams] = useSearchParams();
+  const [firstGroup, setFirstGroup] = useState(false);
+  const [secondGroup, setSecondGroup] = useState(false);
 
-  const [pt, setPT] = useState("");
+  const inputs = [
+    { placeholder: "DD", name: "day" },
+    { placeholder: "MM", name: "month" },
+    { placeholder: "YYYY", name: "year" },
+  ];
+  const startRange = [
+    { placeholder: "DD", name: "eDay" },
+    { placeholder: "MM", name: "sMonth" },
+    { placeholder: "YYYY", name: "sYear" },
+  ];
+  const endRange = [
+    { placeholder: "DD", name: "eDay" },
+    { placeholder: "MM", name: "eMonth" },
+    { placeholder: "YYYY", name: "eYear" },
+  ];
 
-  const comboSpecific = `${year}-${month}-${day}`;
-  const comboRange = `${eYear}-${eMonth}-${eDay}`;
+  const onFinish = (e) => {
+    e.preventDefault();
 
-  const [inputValues, setInputValues] = useState(Array(9).fill(""));
-  const [firstGroupDisabled, setFirstGroupDisabled] = useState(false);
-  const [secondGroupDisabled, setSecondGroupDisabled] = useState(false);
-
-  function handleParentInfo() {
-    if (
-      secondGroupDisabled &&
-      checkValidDate(comboSpecific) &&
-      checkMatch(pt.toUpperCase())
-    ) {
-      specific(pt, comboSpecific);
-    } else if (
-      firstGroupDisabled &&
-      checkValidDate(comboRange) &&
-      checkValidDate(comboSpecific) &&
-      checkMatch(pt.toUpperCase())
-    ) {
-      range(comboRange, comboSpecific, pt);
-    } else {
-      alert(
-        "Error: Please provide the correct date in the following format Day : Month : Year with leading zero if needed"
+    const formdata = new FormData(e.target);
+    const pt = formdata.get("pt");
+    if (!firstGroup && secondGroup && pt) {
+      const [day, month, year] = inputs.map(({ name }) => formdata.get(name));
+      setSearchParams({
+        date: formatDate(day, month, year),
+        pt,
+      });
+    } else if (!secondGroup && firstGroup && pt) {
+      const [sDay, sMonth, sYear] = startRange.map(({ name }) =>
+        formdata.get(name)
       );
-    }
-  }
+      const [eDay, eMonth, eYear] = endRange.map(({ name }) =>
+        formdata.get(name)
+      );
 
-  function handleSolo() {
-    specific("ON", getDate());
-  }
-
-  //super jank solution
-  function disableBox(index, value) {
-    const newInputValues = [...inputValues];
-    newInputValues[index] = value;
-    setInputValues(newInputValues);
-    switch (index) {
-      case 0:
-        setDay(value);
-        break;
-      case 1:
-        setMonth(value);
-        break;
-      case 2:
-        setYear(value);
-        break;
-      case 3:
-        setEDay(value);
-        break;
-      case 4:
-        setEMonth(value);
-        break;
-      case 5:
-        setEYear(value);
-        break;
-      case 6:
-        setDay(value);
-        break;
-      case 7:
-        setMonth(value);
-        break;
-      case 8:
-        setYear(value);
-        break;
-    }
-
-    if (index < 3) {
-      // Check if all three of the first input buttons are empty
-      const allFirstGroupInputsEmpty = newInputValues
-        .slice(0, 3)
-        .every((val) => val === "");
-      setSecondGroupDisabled(!allFirstGroupInputsEmpty);
-      setFirstGroupDisabled(false);
+      setSearchParams({
+        start: formatDate(sDay, sMonth, sYear),
+        end: formatDate(eDay, eMonth, eYear),
+        pt,
+      });
     } else {
-      // Check if any of the last six input buttons have text
-      const anySecondGroupInputHasText = newInputValues
-        .slice(3)
-        .some((val) => val !== "");
-      setFirstGroupDisabled(anySecondGroupInputHasText);
-      setSecondGroupDisabled(false);
+      alert("error");
     }
-  }
+  };
 
   return (
-    <form className="flex flex-col gap-2 items-center">
-      <Button onClick={handleParentInfo}>Print Receipt</Button>
+    <form onSubmit={onFinish} className="flex flex-col gap-2 items-center">
+      <Button htmlType="submit">Print Receipt</Button>
       <div className="border-b border-darkGreen max-w-md m-auto"></div>
-      <div className="bg-lightGreen rounded max-w-lg m-auto px-10 py-4">
+      <div className="bg-lightGreen rounded max-w-xl m-auto px-10 py-4">
         <p className="filter-subtitle">Specific Date:</p>
         <div className="text-pale space-x-1">
-          <input
-            className="twoLetter text-darkGreen"
-            placeholder="DD"
-            type="text"
-            value={inputValues[0]}
-            onChange={(e) => disableBox(0, e.target.value)}
-            disabled={firstGroupDisabled}
-          />
-          <span>:</span>
-          <input
-            className="twoLetter text-darkGreen"
-            placeholder="MM"
-            type="text"
-            value={inputValues[1]}
-            onChange={(e) => disableBox(1, e.target.value)}
-            disabled={firstGroupDisabled}
-          />
-          <span>:</span>
-          <input
-            className="fourLetter text-darkGreen"
-            placeholder="YYYY"
-            type="text"
-            value={inputValues[2]}
-            onChange={(e) => disableBox(2, e.target.value)}
-            disabled={firstGroupDisabled}
-          />
+          <div className="space-x-1">
+            {inputs.map(({ name, placeholder }) => {
+              return (
+                <input
+                  key={name}
+                  name={name}
+                  className="twoLetter text-darkGreen"
+                  placeholder={placeholder}
+                  type="text"
+                  onChange={(e) =>
+                    e.target.value
+                      ? setSecondGroup(true)
+                      : setSecondGroup(false)
+                  }
+                  disabled={firstGroup}
+                />
+              );
+            })}
+          </div>
         </div>
         <p className="filter-subtitle">Specific Range</p>
-        <div className="space-x-1 text-pale">
-          <input
-            className="twoLetter text-darkGreen"
-            placeholder="DD"
-            type="text"
-            value={inputValues[3]}
-            onChange={(e) => disableBox(3, e.target.value)}
-            disabled={secondGroupDisabled}
-          />
-          <span>:</span>
-          <input
-            className="twoLetter text-darkGreen"
-            placeholder="MM"
-            type="text"
-            value={inputValues[4]}
-            onChange={(e) => disableBox(4, e.target.value)}
-            disabled={secondGroupDisabled}
-          />
-          <span>:</span>
-          <input
-            className="fourLetter text-darkGreen"
-            placeholder="YYYY"
-            type="text"
-            value={inputValues[5]}
-            onChange={(e) => disableBox(5, e.target.value)}
-            disabled={secondGroupDisabled}
-          />
-          <span>-</span>
-          <input
-            className="twoLetter text-darkGreen"
-            placeholder="DD"
-            type="text"
-            value={inputValues[6]}
-            onChange={(e) => disableBox(6, e.target.value)}
-            disabled={secondGroupDisabled}
-          />
-          <span>:</span>
-          <input
-            className="twoLetter text-darkGreen"
-            placeholder="MM"
-            type="text"
-            value={inputValues[7]}
-            onChange={(e) => disableBox(7, e.target.value)}
-            disabled={secondGroupDisabled}
-          />
-          <span>:</span>
-          <input
-            className="fourLetter text-darkGreen"
-            placeholder="YYYY"
-            type="text"
-            value={inputValues[8]}
-            onChange={(e) => disableBox(8, e.target.value)}
-            disabled={secondGroupDisabled}
-          />
+        <div className="space-x-1 text-pale flex flex-col md:flex-row md:items-center">
+          <div className="space-x-1">
+            {startRange.map(({ name, placeholder }) => {
+              return (
+                <input
+                  key={name}
+                  name={name}
+                  className="twoLetter text-darkGreen"
+                  placeholder={placeholder}
+                  type="text"
+                  onChange={(e) =>
+                    e.target.value ? setFirstGroup(true) : setFirstGroup(false)
+                  }
+                  disabled={secondGroup}
+                />
+              );
+            })}
+          </div>
+          <span>to</span>
+          <div className="space-x-1">
+            {endRange.map(({ name, placeholder }) => {
+              return (
+                <input
+                  key={name}
+                  name={name}
+                  className="twoLetter text-darkGreen"
+                  placeholder={placeholder}
+                  type="text"
+                  onChange={(e) =>
+                    e.target.value ? setFirstGroup(true) : setFirstGroup(false)
+                  }
+                  disabled={secondGroup}
+                />
+              );
+            })}
+          </div>
         </div>
         <p className="filter-subtitle">Province/Territory</p>
         <div className="input-container">
           <input
             className="twoLetter text-darkGreen"
+            name="pt"
             placeholder="PT"
             type="text"
-            value={pt}
-            onChange={(e) => setPT(e.target.value)}
           />
         </div>
-        <button type="button" className="currentDate" onClick={handleSolo}>
+        <button
+          type="button"
+          className="currentDate"
+          onClick={() =>
+            setSearchParams({
+              pt: "ON",
+              date: getDate(),
+            })
+          }
+        >
           Current Date
         </button>
       </div>

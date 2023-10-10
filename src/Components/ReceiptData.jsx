@@ -5,34 +5,34 @@ const ReceiptData = forwardRef(({ data }, ref) => {
   return (
     <div
       ref={ref}
-      className="bg-paper space-y-3 bg-cover rounded-xl shadow-lg px-12 py-6 w-11/12"
+      className="bg-paper space-y-3 bg-cover rounded-xl shadow-lg px-12 py-6 w-96"
     >
       <Header />
       <div className="space-y-1">
-        <Body left="01" middle="Cases" right={data.cases} />
-        <Body left="02" middle="Test-Completed" right={data.testComplete} />
-        <Body left="03" middle="Deaths" right={data.deaths} />
+        <Body left="01" middle="Cases" right={data?.cases} />
+        <Body left="02" middle="Test-Completed" right={data?.testComplete} />
+        <Body left="03" middle="Deaths" right={data?.deaths} />
         <Body
           left="04"
           middle="Hosplitalizations"
-          right={data.hosplitalizations}
+          right={data?.hosplitalizations}
         />
-        <Body left="05" middle="ICU" right={data.icu} />
+        <Body left="05" middle="ICU" right={data?.icu} />
       </div>
       <Divider left="ITEM #" title="Vaccine Coverage" amount="%" />
       <div className="space-y-1">
-        <Body left="SC" middle="Vaccine Dose 1" right={data.vc1} />
-        <Body left="BT" middle="Vaccine Dose 2" right={data.vc2} />
-        <Body left="C2" middle="Vaccine Dose 3" right={data.vc3} />
-        <Body left="MR" middle="Vaccine Dose 4" right={data.vc4} />
+        <Body left="SC" middle="Vaccine Dose 1" right={data?.vc1} />
+        <Body left="BT" middle="Vaccine Dose 2" right={data?.vc2} />
+        <Body left="C2" middle="Vaccine Dose 3" right={data?.vc3} />
+        <Body left="MR" middle="Vaccine Dose 4" right={data?.vc4} />
       </div>
       <Divider left="ITEM #" title="Vaccine Administration" amount="Amount" />
 
       <div className="space-y-1">
-        <Body left="SC.1" middle="Dose 1" right={data.va1} />
-        <Body left="BT.3" middle="Dose 2" right={data.va2} />
-        <Body left="C2.B" middle="Dose 3" right={data.va3} />
-        <Body left="MR.A" middle="Dose 4" right={data.va4} />
+        <Body left="SC.1" middle="Dose 1" right={data?.va1} />
+        <Body left="BT.3" middle="Dose 2" right={data?.va2} />
+        <Body left="C2.B" middle="Dose 3" right={data?.va3} />
+        <Body left="MR.A" middle="Dose 4" right={data?.va4} />
       </div>
     </div>
   );
